@@ -53,7 +53,6 @@ def render_page(content, max_width="450px", wrap_in_card=True):
     </html>"""
 
 def render_buyer_page(description, email, password, card_content):
-    # Текст с правильными отступами и новой строкой для каждого пункта
     default_desc = """
         <div style="margin-bottom: 20px; text-align: left; font-size: 14px; color: #333; line-height: 1.6; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
             <p style="margin: 0 0 10px 0;">Привет! Спасибо за покупку! 🤝 Чтобы аккаунт работал стабильно и радовал всех нас как можно дольше, вот несколько простых правил комфортного использования:</p>
@@ -63,12 +62,10 @@ def render_buyer_page(description, email, password, card_content):
             <p style="margin: 0;">☕️ Дарите системе немного времени между большими запросами, чтобы она не перегружалась.</p>
         </div>
     """
-    
-    desc_html = f'<div style="margin-bottom: 20px; text-align: center; font-size: 16px; color: #333;">{description}</div>' if description else default_desc
 
     content = f"""
         <div style="width: 100%;">
-            {desc_html}
+            {default_desc}
             <div style="margin-bottom: 15px;">
                 <label style="display: block; font-size: 14px; color: #333; margin-bottom: 5px; margin-left: 5px;">Адрес электронной почты</label>
                 <div onclick="copyData('email')" style="cursor: pointer; position: relative; background: #f0f4ff; border: 2px dashed #0066ff; border-radius: 8px; padding: 12px; transition: all 0.2s;" id="emailContainer" title="Нажмите для копирования">
@@ -339,7 +336,7 @@ def admin():
             <label style="font-weight: bold; font-size: 14px;">Единый 2FA-ключ от аккаунта:</label><br>
             <input type="text" name="secret" placeholder="Например: JBSWY3DPEHPK3PXP" required style="width:100%; padding:10px; margin:5px 0 15px; box-sizing:border-box;"><br>
             <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
-            <label style="font-weight: bold; font-size: 14px;">Описание (если оставить пустым, покажется стандартная памятка):</label><br>
+            <label style="font-weight: bold; font-size: 14px;">Описание (дополнительно):</label><br>
             <textarea name="description" placeholder="Необязательно..." rows="2" style="width:100%; padding:10px; margin:5px 0 15px; box-sizing:border-box; font-family: inherit;"></textarea><br>
             <label style="font-weight: bold; font-size: 14px;">Адрес электронной почты:</label><br>
             <input type="text" name="acc_email" required style="width:100%; padding:10px; margin:5px 0 15px; box-sizing:border-box;"><br>
