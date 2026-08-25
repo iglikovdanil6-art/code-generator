@@ -53,7 +53,18 @@ def render_page(content, max_width="450px", wrap_in_card=True):
     </html>"""
 
 def render_buyer_page(description, email, password, card_content):
-    desc_html = f'<div style="margin-bottom: 20px; text-align: center; font-size: 16px; color: #333;">{description}</div>' if description else ''
+    # Текст с правильными отступами и новой строкой для каждого пункта
+    default_desc = """
+        <div style="margin-bottom: 20px; text-align: left; font-size: 14px; color: #333; line-height: 1.6; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
+            <p style="margin: 0 0 10px 0;">Привет! Спасибо за покупку! 🤝 Чтобы аккаунт работал стабильно и радовал всех нас как можно дольше, вот несколько простых правил комфортного использования:</p>
+            <p style="margin: 0 0 8px 0;">🔑 Пожалуйста, не меняйте пароль, почту и настройки безопасности — так доступ сохранится у каждого.</p>
+            <p style="margin: 0 0 8px 0;">💬 Историю чатов видят все пользователи, поэтому лучше не отправлять туда личные данные или секреты.</p>
+            <p style="margin: 0 0 8px 0;">🧹 Старайтесь не удалять чужие чаты, чтобы никому не мешать.</p>
+            <p style="margin: 0;">☕️ Дарите системе немного времени между большими запросами, чтобы она не перегружалась.</p>
+        </div>
+    """
+    
+    desc_html = f'<div style="margin-bottom: 20px; text-align: center; font-size: 16px; color: #333;">{description}</div>' if description else default_desc
 
     content = f"""
         <div style="width: 100%;">
@@ -328,8 +339,8 @@ def admin():
             <label style="font-weight: bold; font-size: 14px;">Единый 2FA-ключ от аккаунта:</label><br>
             <input type="text" name="secret" placeholder="Например: JBSWY3DPEHPK3PXP" required style="width:100%; padding:10px; margin:5px 0 15px; box-sizing:border-box;"><br>
             <hr style="border: none; border-top: 1px solid #eee; margin: 15px 0;">
-            <label style="font-weight: bold; font-size: 14px;">Описание (появится над почтой):</label><br>
-            <textarea name="description" placeholder="Необязательно. Например: Инструкция..." rows="2" style="width:100%; padding:10px; margin:5px 0 15px; box-sizing:border-box; font-family: inherit;"></textarea><br>
+            <label style="font-weight: bold; font-size: 14px;">Описание (если оставить пустым, покажется стандартная памятка):</label><br>
+            <textarea name="description" placeholder="Необязательно..." rows="2" style="width:100%; padding:10px; margin:5px 0 15px; box-sizing:border-box; font-family: inherit;"></textarea><br>
             <label style="font-weight: bold; font-size: 14px;">Адрес электронной почты:</label><br>
             <input type="text" name="acc_email" required style="width:100%; padding:10px; margin:5px 0 15px; box-sizing:border-box;"><br>
             <label style="font-weight: bold; font-size: 14px;">Пароль:</label><br>
